@@ -1,0 +1,54 @@
+# Serverless poc-crud-rds
+#
+# This file is the main config file for the service.
+# It's very minimal at this point and uses default values.
+#
+
+service: poc-crud-rds #
+
+# frameworkVersion: "=0.1"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  vpc:
+    securityGroupIds:
+      - sg-0a9d372a5b2fe8bca
+    subnetIds:
+      - subnet-4d8c2f66
+      - subnet-29bcf213
+
+
+functions:
+  hello:
+    handler: handler.hello
+  findAll:
+    handler: crud/dao.findAll
+    events:
+      - http:
+          path: todos
+          method: get
+  findOne:
+    handler: crud/dao.findOne
+    events:
+      - http:
+          path: dao/{dao}
+          method: get
+  create:
+    handler: crud/dao.create
+    events:
+      - http:
+          path: todos
+          method: post
+  update:
+    handler: crud/dao.update
+    events:
+      - http:
+          path: dao/{dao}
+          method: put
+  delete:
+    handler: crud/dao.delete
+    events:
+      - http:
+          path: dao/{dao}
+          method: delete
