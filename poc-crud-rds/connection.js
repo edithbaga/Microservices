@@ -1,8 +1,8 @@
 const mysql = require('mysql');
 
 const configDB = {
-  host: 'curso-sls-rds-mysql.ce0nlrsi1rus.us-east-1.rds.amazonaws.com',
-  user: 'curso_sls',
+  host: 'some-name-rds-mysql.ce0nlrsi1rus.us-east-1.rds.amazonaws.com',
+  user: 'somepassward',
   password: 'secret12',
   port: '3306',
   database: 'curso_sls',
@@ -24,7 +24,7 @@ function initializeConnection(config) {
       }
     });
   }
-  
+
   const connection = mysql.createConnection(config);
 
   // Add handlers.
